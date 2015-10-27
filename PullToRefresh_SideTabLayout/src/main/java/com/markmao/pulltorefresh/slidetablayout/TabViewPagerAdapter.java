@@ -11,7 +11,7 @@ import android.support.v4.app.FragmentPagerAdapter;
  */
 public class TabViewPagerAdapter extends FragmentPagerAdapter {
 
-    private String mTabTitle[] = new String[]{"朝代", "人物", "战争"};
+    private String mTabTitle[] = new String[]{"Latest Ideas", "Most Voted Ideas"};
     private Context mContext;
 
     public TabViewPagerAdapter(FragmentManager fm, Context context) {
@@ -26,7 +26,7 @@ public class TabViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 2;
     }
 
     @Override

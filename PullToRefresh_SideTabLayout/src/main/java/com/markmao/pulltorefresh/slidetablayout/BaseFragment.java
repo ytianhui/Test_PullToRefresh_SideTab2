@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 import com.markmao.pulltorefresh.R;
 import com.markmao.pulltorefresh.widget.XListView;
@@ -33,8 +32,6 @@ public class BaseFragment extends Fragment implements XListView.IXListViewListen
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment,container,false);
-        TextView textView = (TextView)view.findViewById(R.id.text);
-        textView.setText("Fragment#" + getArguments().getInt(DATA,0));
 
         geneItems();
         mHandler = new Handler();
@@ -44,10 +41,8 @@ public class BaseFragment extends Fragment implements XListView.IXListViewListen
         mListView.setAutoLoadEnable(true);
         mListView.setXListViewListener(this);
         mListView.setRefreshTime(getTime());
-
         mAdapter = new ArrayAdapter<String>(getActivity(), R.layout.vw_list_item, items);
         mListView.setAdapter(mAdapter);
-
 
         return view;
     }
