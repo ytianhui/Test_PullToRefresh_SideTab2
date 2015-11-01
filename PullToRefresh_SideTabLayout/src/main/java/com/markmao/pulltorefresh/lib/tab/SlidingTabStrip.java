@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.markmao.pulltorefresh.api;
+package com.markmao.pulltorefresh.lib.tab;
 
 import android.R;
 import android.content.Context;

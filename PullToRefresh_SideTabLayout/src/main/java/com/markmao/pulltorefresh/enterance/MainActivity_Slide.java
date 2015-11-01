@@ -4,14 +4,17 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.markmao.pulltorefresh.R;
-import com.markmao.pulltorefresh.api.SlidingTabLayout;
+import com.markmao.pulltorefresh.lib.tab.SlidingTabLayout;
 import com.markmao.pulltorefresh.slidetablayout.TabViewPagerAdapter;
 
 
 public class MainActivity_Slide extends FragmentActivity {
+
+    public static String serverUrl = "http://192.168.56.1:9000/get_LatestIdeaList";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +28,7 @@ public class MainActivity_Slide extends FragmentActivity {
         slidingTabLayout.setViewPager(viewPager);
 
         //自定义下划线颜色
-        slidingTabLayout.setCustomTabColorizer(new SlidingTabLayout.TabColorizer(){
+        slidingTabLayout.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
             @Override
             public int getIndicatorColor(int position) {
                 return Color.RED;

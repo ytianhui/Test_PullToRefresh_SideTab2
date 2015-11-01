@@ -1,4 +1,4 @@
-package com.markmao.pulltorefresh.widget;
+package com.markmao.pulltorefresh.lib.listview;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -15,8 +15,8 @@ import android.widget.TextView;
 import com.markmao.pulltorefresh.R;
 
 /**
- * The header view for {@link com.markmao.pulltorefresh.widget.XListView} and
- * {@link com.markmao.pulltorefresh.widget.XScrollView}
+ * The header view for {@link com.markmao.pulltorefresh.lib.listview.XListView} and
+ * {@link com.markmao.pulltorefresh.lib.listview.XScrollView}
  *
  * @author markmjw
  * @date 2013-10-08

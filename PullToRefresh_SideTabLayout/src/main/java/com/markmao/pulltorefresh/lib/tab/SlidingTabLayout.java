@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.markmao.pulltorefresh.api;
+package com.markmao.pulltorefresh.lib.tab;
 
 import android.content.Context;
 import android.graphics.Typeface;
