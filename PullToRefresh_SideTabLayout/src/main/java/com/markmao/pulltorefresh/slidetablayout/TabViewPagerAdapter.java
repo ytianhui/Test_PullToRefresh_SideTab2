@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.util.Log;
 
 /**
  * 简单实例
@@ -22,11 +21,16 @@ public class TabViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        Log.e("here4", position + "");
-        if(position == 1) {
-            return BaseFragment_Good.newInstance(position);
+
+        switch(position) {
+            case 0:
+                return Fragment_Latest.newInstance(position);
+            case 1:
+                return Fragment_Good.newInstance(position);
+            default:
+                return Fragment_Latest.newInstance(position);
         }
-        return BaseFragment_Latest.newInstance(position);
+
     }
 
     @Override

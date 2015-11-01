@@ -31,7 +31,7 @@ import java.util.Locale;
 /**
  * @author fyales
  */
-public class BaseFragment_Latest extends Fragment implements XListView.IXListViewListener{
+public class Fragment_Latest extends Fragment implements XListView.IXListViewListener{
     private static final String DATA = "data";
 
     private XListView mListView;
@@ -51,19 +51,18 @@ public class BaseFragment_Latest extends Fragment implements XListView.IXListVie
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment,container,false);
+        View view = inflater.inflate(R.layout.fragment_latest,container,false);
         Log.e("here5", "Latest");
 
         new JSONParse().execute();
 
         mHandler = new Handler();
-        mListView = (XListView) view.findViewById(R.id.list_view);
+        mListView = (XListView) view.findViewById(R.id.list_view_latest);
         mListView.setPullRefreshEnable(true);
         mListView.setPullLoadEnable(true);
         mListView.setAutoLoadEnable(true);
         mListView.setXListViewListener(this);
         mListView.setRefreshTime(getTime());
-
 
         return view;
     }
@@ -74,7 +73,7 @@ public class BaseFragment_Latest extends Fragment implements XListView.IXListVie
     }
 
     public static Fragment newInstance(int type){
-        Fragment fragment = new BaseFragment_Latest();
+        Fragment fragment = new Fragment_Latest();
         Bundle bundle = new Bundle();
         bundle.putInt(DATA,type);
         fragment.setArguments(bundle);
@@ -151,7 +150,7 @@ public class BaseFragment_Latest extends Fragment implements XListView.IXListVie
             List<NameValuePair> postData = new ArrayList<NameValuePair>(2);
 
             postData.add(new BasicNameValuePair("pageNumber", pageNumber+""));
-            HttpPost hmpr = new HttpPost(MainActivity_Slide.serverUrl, postData);
+            HttpPost hmpr = new HttpPost(MainActivity_Slide.serverUrl+"get_LatestIdeaList", postData);
             replyMessage = hmpr.send();//for this time, the reply message is the total distance
             JSONObject json = null;
             try {

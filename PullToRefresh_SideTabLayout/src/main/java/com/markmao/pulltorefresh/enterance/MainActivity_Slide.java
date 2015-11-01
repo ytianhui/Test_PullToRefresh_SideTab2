@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.markmao.pulltorefresh.R;
@@ -14,7 +13,7 @@ import com.markmao.pulltorefresh.slidetablayout.TabViewPagerAdapter;
 
 public class MainActivity_Slide extends FragmentActivity {
 
-    public static String serverUrl = "http://192.168.56.1:9000/get_LatestIdeaList";
+    public static String serverUrl = "http://192.168.56.1:9000/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

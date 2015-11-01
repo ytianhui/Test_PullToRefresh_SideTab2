@@ -27,11 +27,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
 /**
  * @author fyales
  */
-public class BaseFragment_Good extends Fragment implements XListView.IXListViewListener{
+public class Fragment_Good extends Fragment implements XListView.IXListViewListener{
     private static final String DATA = "data";
 
     private XListView mListView;
@@ -47,24 +46,23 @@ public class BaseFragment_Good extends Fragment implements XListView.IXListViewL
     private static final String TAG_comment = "comment";
     private static final String TAG_rank = "rank";
     private ArrayList<String> ideaNameList = new ArrayList<String>();
-    private int pageNumber = 0;
+    private int pageNumber = 1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment,container,false);
-
-        Log.e("here5", "Good");
+        View view = inflater.inflate(R.layout.fragment_good,container,false);
+        Log.e("here6", "1");
 
         new JSONParse().execute();
+        Log.e("here6", "2");
 
         mHandler = new Handler();
-        mListView = (XListView) view.findViewById(R.id.list_view);
+        mListView = (XListView) view.findViewById(R.id.list_view_good);
         mListView.setPullRefreshEnable(true);
         mListView.setPullLoadEnable(true);
         mListView.setAutoLoadEnable(true);
         mListView.setXListViewListener(this);
         mListView.setRefreshTime(getTime());
-
 
         return view;
     }
@@ -75,14 +73,12 @@ public class BaseFragment_Good extends Fragment implements XListView.IXListViewL
     }
 
     public static Fragment newInstance(int type){
-        Fragment fragment = new BaseFragment_Good();
+        Fragment fragment = new Fragment_Good();
         Bundle bundle = new Bundle();
         bundle.putInt(DATA,type);
         fragment.setArguments(bundle);
         return fragment;
     }
-
-
     /*
         @Override
         public void onWindowFocusChanged(boolean hasFocus) {
@@ -99,7 +95,7 @@ public class BaseFragment_Good extends Fragment implements XListView.IXListViewL
             @Override
             public void run() {
                 ideaNameList.clear();
-                pageNumber = 0;
+                pageNumber = 1;
                 new JSONParse().execute();
                 mAdapter = new ArrayAdapter<String>(getActivity(), R.layout.vw_list_item, ideaNameList);
                 mListView.setAdapter(mAdapter);
@@ -114,6 +110,7 @@ public class BaseFragment_Good extends Fragment implements XListView.IXListViewL
             @Override
             public void run() {
                 pageNumber = pageNumber+1;
+                ideaNameList.clear();
                 new JSONParse().execute();
                 mAdapter.notifyDataSetChanged();
                 onLoad();
@@ -150,15 +147,23 @@ public class BaseFragment_Good extends Fragment implements XListView.IXListViewL
 
             String replyMessage = "";
             List<NameValuePair> postData = new ArrayList<NameValuePair>(2);
+            Log.e("here6", "3");
 
             postData.add(new BasicNameValuePair("pageNumber", pageNumber+""));
-            HttpPost hmpr = new HttpPost(MainActivity_Slide.serverUrl, postData);
+            HttpPost hmpr = new HttpPost(MainActivity_Slide.serverUrl+"get_GoodIdeaRank", postData);
             replyMessage = hmpr.send();//for this time, the reply message is the total distance
+            Log.e("here6", "4"+" "+MainActivity_Slide.serverUrl+"get_GoodIdeaRank"+" "+pageNumber);
+
             JSONObject json = null;
             try {
-                Log.e("here3¥n", replyMessage);
+                Log.e("here6", "5");
+
+                Log.e("here3", replyMessage);
                 json = new JSONObject(replyMessage);
             } catch (Exception e) {
+                Log.e("here6", "6");
+                Log.e("here6", e.toString());
+
                 e.printStackTrace();
             }
             return json;

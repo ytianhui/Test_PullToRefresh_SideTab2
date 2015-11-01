@@ -2,39 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/Users/yangtianhui/Downloads/PullToRefresh-master/PullToRefresh/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/jars/libs/internal_impl-21.0.3.jar"
+        jar="/Users/yangtianhui/Downloads/Test_PullToRefresh/PullToRefresh_SideTabLayout/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/jars/libs/internal_impl-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="/Users/yangtianhui/Downloads/PullToRefresh-master/PullToRefresh/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-1a60d4012a7ed5a68f3cc0497ee152a880f44109.jar" />
-    </item>
-    <item
-        jar="/Users/yangtianhui/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="/Users/yangtianhui/Downloads/PullToRefresh-master/PullToRefresh/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-21cf0c51b1c338b1d36f6796507787229de9ddff.jar" />
-    </item>
-    <item
-        jar="/Users/yangtianhui/Downloads/Test_PullToRefresh/PullToRefresh_SideTabLayout/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/jars/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="/Users/yangtianhui/Downloads/Test_PullToRefresh/PullToRefresh_SideTabLayout/build/intermediates/pre-dexed/debug/classes-42c5ecd758d004ac929147990af2f4d880ed2804.jar" />
-    </item>
-    <item
-        jar="/Users/yangtianhui/Downloads/PullToRefresh-master/PullToRefresh/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/jars/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="/Users/yangtianhui/Downloads/PullToRefresh-master/PullToRefresh/build/intermediates/pre-dexed/debug/classes-f21fc2d6fc80ace0fde6d01a851460b5b733e0fb.jar" />
-    </item>
-    <item
-        jar="/Users/yangtianhui/Downloads/PullToRefresh-master/PullToRefresh/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/jars/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="/Users/yangtianhui/Downloads/PullToRefresh-master/PullToRefresh/build/intermediates/pre-dexed/debug/classes-693c1f6521fc641313122617bbcb7b91f93a2a55.jar" />
+        <dex dex="/Users/yangtianhui/Downloads/Test_PullToRefresh/PullToRefresh_SideTabLayout/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-bf6a09526f25cb35c498993d2e2e507459884169.jar" />
     </item>
     <item
         jar="/Users/yangtianhui/Downloads/Test_PullToRefresh/PullToRefresh_SideTabLayout/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/jars/classes.jar"
@@ -44,11 +16,39 @@
         <dex dex="/Users/yangtianhui/Downloads/Test_PullToRefresh/PullToRefresh_SideTabLayout/build/intermediates/pre-dexed/debug/classes-75170fe45ef28b75c57e5cc120bced3218cbc9d9.jar" />
     </item>
     <item
-        jar="/Users/yangtianhui/Downloads/Test_PullToRefresh/PullToRefresh_SideTabLayout/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/jars/libs/internal_impl-21.0.3.jar"
+        jar="/Users/yangtianhui/Downloads/Test_PullToRefresh/PullToRefresh_SideTabLayout/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/Users/yangtianhui/Downloads/Test_PullToRefresh/PullToRefresh_SideTabLayout/build/intermediates/pre-dexed/debug/classes-42c5ecd758d004ac929147990af2f4d880ed2804.jar" />
+    </item>
+    <item
+        jar="/Users/yangtianhui/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="/Users/yangtianhui/Downloads/PullToRefresh-master/PullToRefresh/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-21cf0c51b1c338b1d36f6796507787229de9ddff.jar" />
+    </item>
+    <item
+        jar="/Users/yangtianhui/Downloads/PullToRefresh-master/PullToRefresh/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/Users/yangtianhui/Downloads/PullToRefresh-master/PullToRefresh/build/intermediates/pre-dexed/debug/classes-693c1f6521fc641313122617bbcb7b91f93a2a55.jar" />
+    </item>
+    <item
+        jar="/Users/yangtianhui/Downloads/PullToRefresh-master/PullToRefresh/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/jars/libs/internal_impl-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="/Users/yangtianhui/Downloads/Test_PullToRefresh/PullToRefresh_SideTabLayout/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-bf6a09526f25cb35c498993d2e2e507459884169.jar" />
+        <dex dex="/Users/yangtianhui/Downloads/PullToRefresh-master/PullToRefresh/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-1a60d4012a7ed5a68f3cc0497ee152a880f44109.jar" />
+    </item>
+    <item
+        jar="/Users/yangtianhui/Downloads/PullToRefresh-master/PullToRefresh/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/Users/yangtianhui/Downloads/PullToRefresh-master/PullToRefresh/build/intermediates/pre-dexed/debug/classes-f21fc2d6fc80ace0fde6d01a851460b5b733e0fb.jar" />
     </item>
 
 </items>
