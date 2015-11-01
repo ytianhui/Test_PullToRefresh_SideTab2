@@ -11,7 +11,7 @@ import android.support.v4.app.FragmentPagerAdapter;
  */
 public class TabViewPagerAdapter extends FragmentPagerAdapter {
 
-    private String mTabTitle[] = new String[]{"Latest Ideas", "Most Voted Ideas"};
+    private String mTabTitle[] = new String[]{"Latest Ideas", "Most Voted Ideas","My Upload Ideas"};
     private Context mContext;
 
     public TabViewPagerAdapter(FragmentManager fm, Context context) {
@@ -27,15 +27,16 @@ public class TabViewPagerAdapter extends FragmentPagerAdapter {
                 return Fragment_Latest.newInstance(position);
             case 1:
                 return Fragment_Good.newInstance(position);
+            case 2:
+                return Fragment_Mine.newInstance(position);
             default:
                 return Fragment_Latest.newInstance(position);
         }
-
     }
 
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
 
     @Override

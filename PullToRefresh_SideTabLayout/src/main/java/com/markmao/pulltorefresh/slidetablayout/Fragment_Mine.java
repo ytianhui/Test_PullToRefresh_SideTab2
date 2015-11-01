@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 
 import com.markmao.pulltorefresh.R;
 import com.markmao.pulltorefresh.enterance.MainActivity_Slide;
@@ -30,10 +31,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
 /**
  * @author fyales
  */
-public class Fragment_Good extends Fragment implements XListView.IXListViewListener{
+public class Fragment_Mine extends Fragment implements XListView.IXListViewListener{
     private static final String DATA = "data";
 
     private XListView mListView;
@@ -48,26 +50,39 @@ public class Fragment_Good extends Fragment implements XListView.IXListViewListe
     private static final String TAG_ideaName = "ideaName";
     private static final String TAG_comment = "comment";
     private static final String TAG_rank = "rank";
+
     private ArrayList<String> userNameList = new ArrayList<String>();
     private ArrayList<String> ideaNameList = new ArrayList<String>();
     private ArrayList<String> commentList = new ArrayList<String>();
     private ArrayList<String> rankList = new ArrayList<String>();
-
-    private int pageNumber = 1;
+    private int pageNumber = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_good,container,false);
+        View view = inflater.inflate(R.layout.fragment_mine,container,false);
         Log.e("here6", "1");
 
         new JSONParse().execute();
         Log.e("here6", "2");
 
         mHandler = new Handler();
-        mListView = (XListView) view.findViewById(R.id.list_view_good);
+        mListView = (XListView) view.findViewById(R.id.list_view_mine);
         initialize();
 
         return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    public static Fragment newInstance(int type){
+        Fragment fragment = new Fragment_Mine();
+        Bundle bundle = new Bundle();
+        bundle.putInt(DATA,type);
+        fragment.setArguments(bundle);
+        return fragment;
     }
     public void initialize(){
         mListView.setPullRefreshEnable(true);
@@ -80,20 +95,7 @@ public class Fragment_Good extends Fragment implements XListView.IXListViewListe
         ideaNameList.clear();
         commentList.clear();
         rankList.clear();
-
-        pageNumber = 1;
-    }
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-    }
-
-    public static Fragment newInstance(int type){
-        Fragment fragment = new Fragment_Good();
-        Bundle bundle = new Bundle();
-        bundle.putInt(DATA,type);
-        fragment.setArguments(bundle);
-        return fragment;
+        pageNumber = 0;
     }
     /*
         @Override
@@ -110,7 +112,7 @@ public class Fragment_Good extends Fragment implements XListView.IXListViewListe
             @Override
             public void run() {
                 ideaNameList.clear();
-                pageNumber = 1;
+                pageNumber = 0;
                 new JSONParse().execute();
                 mAdapter = new ArrayAdapter<String>(getActivity(), R.layout.vw_list_item, ideaNameList);
                 mListView.setAdapter(mAdapter);
@@ -125,7 +127,6 @@ public class Fragment_Good extends Fragment implements XListView.IXListViewListe
             @Override
             public void run() {
                 pageNumber = pageNumber + 1;
-                ideaNameList.clear();
                 new JSONParse().execute();
                 mAdapter.notifyDataSetChanged();
                 onLoad();
@@ -164,10 +165,11 @@ public class Fragment_Good extends Fragment implements XListView.IXListViewListe
             List<NameValuePair> postData = new ArrayList<NameValuePair>(2);
             Log.e("here6", "3");
 
-            postData.add(new BasicNameValuePair("pageNumber", pageNumber+""));
-            HttpPost hmpr = new HttpPost(MainActivity_Slide.serverUrl+"get_GoodIdeaRank", postData);
+            postData.add(new BasicNameValuePair("pageNumber", pageNumber + ""));
+            postData.add(new BasicNameValuePair("userName", "lucy"));
+            HttpPost hmpr = new HttpPost(MainActivity_Slide.serverUrl+"get_myIdeaList", postData);
             replyMessage = hmpr.send();//for this time, the reply message is the total distance
-            Log.e("here6", "4"+" "+MainActivity_Slide.serverUrl+"get_GoodIdeaRank"+" "+pageNumber);
+            Log.e("here6", "4"+" "+MainActivity_Slide.serverUrl+"get_myIdeaList"+" "+pageNumber);
 
             JSONObject json = null;
             try {
@@ -200,12 +202,9 @@ public class Fragment_Good extends Fragment implements XListView.IXListViewListe
                     commentList.add(comment);
                     rankList.add(rank);
                 }
-
                 mAdapter = new ArrayAdapter<String>(getActivity(), R.layout.vw_list_item, ideaNameList);
                 mListView.setAdapter(mAdapter);
                 setListClickView();
-
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -217,26 +216,18 @@ public class Fragment_Good extends Fragment implements XListView.IXListViewListe
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 String item = (String) mListView.getItemAtPosition(position);
-                Log.e("here7：", position+"");
-
+                EditText commentEditText = new EditText(getActivity());
+                commentEditText.setText(commentList.get(position-1));
                 AlertDialog dialog = new AlertDialog.Builder(getActivity())
                         .setTitle(item)
-                        .setMessage("created by user: " + userNameList.get(position-1))
-                        .setMessage("Comment:")
-                        .setMessage(commentList.get(position-1))
-                        .setPositiveButton("Good Idea!", new DialogInterface.OnClickListener() {
+                        .setMessage("My comment:")
+                        .setView(commentEditText)
+                        .setPositiveButton("update", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-
                             }
                         })
-                        .setNeutralButton("Contact Author", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        })
-                        .setNegativeButton("Bad Idea!", new DialogInterface.OnClickListener() {
+                        .setNegativeButton("Delete", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                             }

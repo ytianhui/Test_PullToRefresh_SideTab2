@@ -1,6 +1,8 @@
 package com.markmao.pulltorefresh.slidetablayout;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import com.markmao.pulltorefresh.R;
@@ -46,7 +49,12 @@ public class Fragment_Latest extends Fragment implements XListView.IXListViewLis
     private static final String TAG_ideaName = "ideaName";
     private static final String TAG_comment = "comment";
     private static final String TAG_rank = "rank";
+
+    private ArrayList<String> userNameList = new ArrayList<String>();
     private ArrayList<String> ideaNameList = new ArrayList<String>();
+    private ArrayList<String> commentList = new ArrayList<String>();
+    private ArrayList<String> rankList = new ArrayList<String>();
+
     private int pageNumber = 0;
 
     @Override
@@ -58,15 +66,25 @@ public class Fragment_Latest extends Fragment implements XListView.IXListViewLis
 
         mHandler = new Handler();
         mListView = (XListView) view.findViewById(R.id.list_view_latest);
+        initialize();
+
+        return view;
+    }
+
+    public void initialize(){
         mListView.setPullRefreshEnable(true);
         mListView.setPullLoadEnable(true);
         mListView.setAutoLoadEnable(true);
         mListView.setXListViewListener(this);
         mListView.setRefreshTime(getTime());
 
-        return view;
-    }
+        userNameList.clear();
+        ideaNameList.clear();
+        commentList.clear();
+        rankList.clear();
 
+        pageNumber = 0;
+    }
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -177,14 +195,46 @@ public class Fragment_Latest extends Fragment implements XListView.IXListViewLis
                     String ideaName = c.getString(TAG_ideaName);
                     String comment = c.getString(TAG_comment);
                     String rank = c.getString(TAG_rank);
+                    userNameList.add(userName);
                     ideaNameList.add(ideaName);
-
-                    mAdapter = new ArrayAdapter<String>(getActivity(), R.layout.vw_list_item, ideaNameList);
-                    mListView.setAdapter(mAdapter);
+                    commentList.add(comment);
+                    rankList.add(rank);
                 }
+                mAdapter = new ArrayAdapter<String>(getActivity(), R.layout.vw_list_item, ideaNameList);
+                mListView.setAdapter(mAdapter);
+                setListClickView();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
+    }
+    private void setListClickView(){
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                String item = (String) mListView.getItemAtPosition(position);
+                Log.e("here7", position + "");
+
+                AlertDialog dialog = new AlertDialog.Builder(getActivity())
+                        .setTitle(item)
+                        .setMessage("Created by " + userNameList.get(position-1)+"\nComment:\n"+commentList.get(position-1))
+                        .setPositiveButton("Good Idea!", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        })
+                        .setNeutralButton("Contact Author", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        })
+                        .setNegativeButton("Bad Idea!", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        }).create();
+                dialog.show();
+            }
+        });
     }
 }
