@@ -3,6 +3,7 @@ package com.markmao.pulltorefresh.slidetablayout;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,6 +17,7 @@ import android.widget.ArrayAdapter;
 
 import com.markmao.pulltorefresh.R;
 import com.markmao.pulltorefresh.enterance.MainActivity_Slide;
+import com.markmao.pulltorefresh.lib.chat.ChatActivity;
 import com.markmao.pulltorefresh.lib.listview.XListView;
 import com.markmao.pulltorefresh.lib.net.HttpPost;
 
@@ -30,7 +32,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
 /**
  * @author fyales
  */
@@ -49,11 +50,13 @@ public class Fragment_Latest extends Fragment implements XListView.IXListViewLis
     private static final String TAG_ideaName = "ideaName";
     private static final String TAG_comment = "comment";
     private static final String TAG_rank = "rank";
+    private static final String TAG_ideaID = "ideaID";
 
     private ArrayList<String> userNameList = new ArrayList<String>();
     private ArrayList<String> ideaNameList = new ArrayList<String>();
     private ArrayList<String> commentList = new ArrayList<String>();
     private ArrayList<String> rankList = new ArrayList<String>();
+    private ArrayList<String> ideaIDList = new ArrayList<String>();
 
     private int pageNumber = 0;
 
@@ -63,11 +66,9 @@ public class Fragment_Latest extends Fragment implements XListView.IXListViewLis
         Log.e("here5", "Latest");
 
         new JSONParse().execute();
-
         mHandler = new Handler();
         mListView = (XListView) view.findViewById(R.id.list_view_latest);
         initialize();
-
         return view;
     }
 
@@ -82,6 +83,7 @@ public class Fragment_Latest extends Fragment implements XListView.IXListViewLis
         ideaNameList.clear();
         commentList.clear();
         rankList.clear();
+        ideaIDList.clear();
 
         pageNumber = 0;
     }
@@ -98,12 +100,9 @@ public class Fragment_Latest extends Fragment implements XListView.IXListViewLis
         return fragment;
     }
 
-
-    /*
-        @Override
+    /*@Override
         public void onWindowFocusChanged(boolean hasFocus) {
             super.onWindowFocusChanged(hasFocus);
-
             if (hasFocus) {
                 mListView.autoRefresh();
             }
@@ -150,7 +149,6 @@ public class Fragment_Latest extends Fragment implements XListView.IXListViewLis
     /*****json here***/
     private class JSONParse extends AsyncTask<String, String, JSONObject> {
         private ProgressDialog pDialog;
-
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -163,7 +161,6 @@ public class Fragment_Latest extends Fragment implements XListView.IXListViewLis
 
         @Override
         protected JSONObject doInBackground(String... args) {
-
             String replyMessage = "";
             List<NameValuePair> postData = new ArrayList<NameValuePair>(2);
 
@@ -171,8 +168,13 @@ public class Fragment_Latest extends Fragment implements XListView.IXListViewLis
             HttpPost hmpr = new HttpPost(MainActivity_Slide.serverUrl+"get_LatestIdeaList", postData);
             replyMessage = hmpr.send();//for this time, the reply message is the total distance
             JSONObject json = null;
+
+            if(replyMessage == null){
+                Log.e("here3¥n", "hey");
+                replyMessage = "{\"oneSet\":[\n" +
+                        "]}\n";
+            }
             try {
-                Log.e("here3¥n", replyMessage);
                 json = new JSONObject(replyMessage);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -195,10 +197,13 @@ public class Fragment_Latest extends Fragment implements XListView.IXListViewLis
                     String ideaName = c.getString(TAG_ideaName);
                     String comment = c.getString(TAG_comment);
                     String rank = c.getString(TAG_rank);
+                    String ideaID = c.getString(TAG_ideaID);
+
                     userNameList.add(userName);
                     ideaNameList.add(ideaName);
                     commentList.add(comment);
                     rankList.add(rank);
+                    ideaIDList.add(ideaID);
                 }
                 mAdapter = new ArrayAdapter<String>(getActivity(), R.layout.vw_list_item, ideaNameList);
                 mListView.setAdapter(mAdapter);
@@ -223,9 +228,15 @@ public class Fragment_Latest extends Fragment implements XListView.IXListViewLis
                             public void onClick(DialogInterface dialog, int which) {
                             }
                         })
-                        .setNeutralButton("Contact Author", new DialogInterface.OnClickListener() {
+                        .setNeutralButton("Disscuss Space", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent();
+                                intent.setClass(getActivity(), ChatActivity.class);
+                                intent.putExtra("ideaID", ideaIDList.get(position-1));
+                                intent.putExtra("ideaName",ideaNameList.get(position-1));
+                                intent.putExtra("userName", userNameList.get(position-1));
+                                startActivity(intent);
                             }
                         })
                         .setNegativeButton("Bad Idea!", new DialogInterface.OnClickListener() {

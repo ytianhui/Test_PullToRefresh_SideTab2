@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 
+import com.firebase.client.Firebase;
 import com.markmao.pulltorefresh.R;
 import com.markmao.pulltorefresh.lib.tab.SlidingTabLayout;
 import com.markmao.pulltorefresh.slidetablayout.TabViewPagerAdapter;
@@ -18,6 +19,8 @@ public class MainActivity_Slide extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Firebase.setAndroidContext(this);
+
         setContentView(R.layout.activity_main);
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         viewPager.setAdapter(new TabViewPagerAdapter(getSupportFragmentManager(),

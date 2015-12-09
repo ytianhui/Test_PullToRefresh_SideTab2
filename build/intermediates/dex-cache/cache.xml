@@ -2,27 +2,6 @@
 <items version="2" >
 
     <item
-        jar="/Users/yangtianhui/Downloads/Test_PullToRefresh/PullToRefresh_SideTabLayout/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/jars/libs/internal_impl-21.0.3.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="/Users/yangtianhui/Downloads/Test_PullToRefresh/PullToRefresh_SideTabLayout/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-bf6a09526f25cb35c498993d2e2e507459884169.jar" />
-    </item>
-    <item
-        jar="/Users/yangtianhui/Downloads/Test_PullToRefresh/PullToRefresh_SideTabLayout/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/jars/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="/Users/yangtianhui/Downloads/Test_PullToRefresh/PullToRefresh_SideTabLayout/build/intermediates/pre-dexed/debug/classes-75170fe45ef28b75c57e5cc120bced3218cbc9d9.jar" />
-    </item>
-    <item
-        jar="/Users/yangtianhui/Downloads/Test_PullToRefresh/PullToRefresh_SideTabLayout/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/jars/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="/Users/yangtianhui/Downloads/Test_PullToRefresh/PullToRefresh_SideTabLayout/build/intermediates/pre-dexed/debug/classes-42c5ecd758d004ac929147990af2f4d880ed2804.jar" />
-    </item>
-    <item
         jar="/Users/yangtianhui/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -37,11 +16,74 @@
         <dex dex="/Users/yangtianhui/Downloads/PullToRefresh-master/PullToRefresh/build/intermediates/pre-dexed/debug/classes-693c1f6521fc641313122617bbcb7b91f93a2a55.jar" />
     </item>
     <item
+        jar="/Users/yangtianhui/.gradle/caches/modules-2/files-2.1/com.firebase/firebase-client-jvm/2.0.3/81994bbc1bd46454616b733bf31fe4a22018e056/firebase-client-jvm-2.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81994bbc1bd46454616b733bf31fe4a22018e056">
+        <dex dex="/Users/yangtianhui/Downloads/Test_PullToRefresh/PullToRefresh_SideTabLayout/build/intermediates/pre-dexed/debug/firebase-client-jvm-2.0.3-69473b62778d79ca25e571091b185f44f46691e4.jar" />
+    </item>
+    <item
+        jar="/Users/yangtianhui/Downloads/Test_PullToRefresh/PullToRefresh_SideTabLayout/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/Users/yangtianhui/Downloads/Test_PullToRefresh/PullToRefresh_SideTabLayout/build/intermediates/pre-dexed/debug/classes-75170fe45ef28b75c57e5cc120bced3218cbc9d9.jar" />
+    </item>
+    <item
+        jar="/Users/yangtianhui/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.2.2/3c8f6018eaa72d43b261181e801e6f8676c16ef6/jackson-databind-2.2.2.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="3c8f6018eaa72d43b261181e801e6f8676c16ef6">
+        <dex dex="/Users/yangtianhui/Downloads/Test_PullToRefresh/PullToRefresh_SideTabLayout/build/intermediates/pre-dexed/debug/jackson-databind-2.2.2-cb67e12107d28c6468cdb204557894f56d22ff16.jar" />
+    </item>
+    <item
+        jar="/Users/yangtianhui/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.2.2/285cb9c666f0f0f3dd8a1be04e1f457eb7b15113/jackson-annotations-2.2.2.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="285cb9c666f0f0f3dd8a1be04e1f457eb7b15113">
+        <dex dex="/Users/yangtianhui/Downloads/Test_PullToRefresh/PullToRefresh_SideTabLayout/build/intermediates/pre-dexed/debug/jackson-annotations-2.2.2-ef317ebd69c16d6ccd0b423ced99cbb7abac9448.jar" />
+    </item>
+    <item
+        jar="/Users/yangtianhui/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.2.2/d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b/jackson-core-2.2.2.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b">
+        <dex dex="/Users/yangtianhui/Downloads/Test_PullToRefresh/PullToRefresh_SideTabLayout/build/intermediates/pre-dexed/debug/jackson-core-2.2.2-940181ff20f64b658bdc6cb57ce3ae5416735c8d.jar" />
+    </item>
+    <item
+        jar="/Users/yangtianhui/.gradle/caches/modules-2/files-2.1/com.firebase/tubesock/0.0.10/ddce2c65136c1de8000f8932d8b7ab16d5d336b9/tubesock-0.0.10.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="ddce2c65136c1de8000f8932d8b7ab16d5d336b9">
+        <dex dex="/Users/yangtianhui/Downloads/Test_PullToRefresh/PullToRefresh_SideTabLayout/build/intermediates/pre-dexed/debug/tubesock-0.0.10-68b9a51fc7f52267692e2b63ce90f1dd7c61f444.jar" />
+    </item>
+    <item
+        jar="/Users/yangtianhui/Downloads/Test_PullToRefresh/PullToRefresh_SideTabLayout/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/Users/yangtianhui/Downloads/Test_PullToRefresh/PullToRefresh_SideTabLayout/build/intermediates/pre-dexed/debug/classes-42c5ecd758d004ac929147990af2f4d880ed2804.jar" />
+    </item>
+    <item
+        jar="/Users/yangtianhui/Downloads/Test_PullToRefresh/PullToRefresh_SideTabLayout/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/jars/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/Users/yangtianhui/Downloads/Test_PullToRefresh/PullToRefresh_SideTabLayout/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-bf6a09526f25cb35c498993d2e2e507459884169.jar" />
+    </item>
+    <item
         jar="/Users/yangtianhui/Downloads/PullToRefresh-master/PullToRefresh/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/jars/libs/internal_impl-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
         <dex dex="/Users/yangtianhui/Downloads/PullToRefresh-master/PullToRefresh/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-1a60d4012a7ed5a68f3cc0497ee152a880f44109.jar" />
+    </item>
+    <item
+        jar="/Users/yangtianhui/.gradle/caches/modules-2/files-2.1/com.firebase/firebase-client-android/2.0.3/1665cb30372ae93a46d9800adf5751bc48fa202f/firebase-client-android-2.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="1665cb30372ae93a46d9800adf5751bc48fa202f">
+        <dex dex="/Users/yangtianhui/Downloads/Test_PullToRefresh/PullToRefresh_SideTabLayout/build/intermediates/pre-dexed/debug/firebase-client-android-2.0.3-6eddd01823741e2050ba86af10d5991a4a8787c2.jar" />
     </item>
     <item
         jar="/Users/yangtianhui/Downloads/PullToRefresh-master/PullToRefresh/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/jars/classes.jar"

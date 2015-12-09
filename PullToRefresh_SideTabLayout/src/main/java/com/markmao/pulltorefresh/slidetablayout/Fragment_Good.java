@@ -3,6 +3,7 @@ package com.markmao.pulltorefresh.slidetablayout;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,9 +14,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import com.markmao.pulltorefresh.R;
 import com.markmao.pulltorefresh.enterance.MainActivity_Slide;
+import com.markmao.pulltorefresh.lib.chat.ChatActivity;
 import com.markmao.pulltorefresh.lib.listview.XListView;
 import com.markmao.pulltorefresh.lib.net.HttpPost;
 
@@ -42,27 +45,28 @@ public class Fragment_Good extends Fragment implements XListView.IXListViewListe
     private int mIndex = 0;
     private int mRefreshIndex = 0;
 
+    private int pageNumber = 1;
+
     //JSON Node Names
     private static final String TAG_oneSet = "oneSet";
     private static final String TAG_userName = "userName";
     private static final String TAG_ideaName = "ideaName";
     private static final String TAG_comment = "comment";
     private static final String TAG_rank = "rank";
+    private static final String TAG_ideaID = "ideaID";
+
     private ArrayList<String> userNameList = new ArrayList<String>();
     private ArrayList<String> ideaNameList = new ArrayList<String>();
     private ArrayList<String> commentList = new ArrayList<String>();
     private ArrayList<String> rankList = new ArrayList<String>();
-
-    private int pageNumber = 1;
+    private ArrayList<String> ideaIDList = new ArrayList<String>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_good,container,false);
         Log.e("here6", "1");
-
         new JSONParse().execute();
         Log.e("here6", "2");
-
         mHandler = new Handler();
         mListView = (XListView) view.findViewById(R.id.list_view_good);
         initialize();
@@ -80,6 +84,7 @@ public class Fragment_Good extends Fragment implements XListView.IXListViewListe
         ideaNameList.clear();
         commentList.clear();
         rankList.clear();
+        ideaIDList.clear();
 
         pageNumber = 1;
     }
@@ -159,22 +164,23 @@ public class Fragment_Good extends Fragment implements XListView.IXListViewListe
 
         @Override
         protected JSONObject doInBackground(String... args) {
-
             String replyMessage = "";
             List<NameValuePair> postData = new ArrayList<NameValuePair>(2);
             Log.e("here6", "3");
-
             postData.add(new BasicNameValuePair("pageNumber", pageNumber+""));
             HttpPost hmpr = new HttpPost(MainActivity_Slide.serverUrl+"get_GoodIdeaRank", postData);
             replyMessage = hmpr.send();//for this time, the reply message is the total distance
             Log.e("here6", "4"+" "+MainActivity_Slide.serverUrl+"get_GoodIdeaRank"+" "+pageNumber);
 
             JSONObject json = null;
+            if(replyMessage == null){
+                Log.e("here3¥n", "hey");
+                replyMessage = "{\"oneSet\":[\n" +
+                        "]}\n";
+            }
             try {
-                Log.e("here3", replyMessage);
                 json = new JSONObject(replyMessage);
             } catch (Exception e) {
-                Log.e("here6", e.toString());
                 e.printStackTrace();
             }
             return json;
@@ -195,16 +201,17 @@ public class Fragment_Good extends Fragment implements XListView.IXListViewListe
                     String ideaName = c.getString(TAG_ideaName);
                     String comment = c.getString(TAG_comment);
                     String rank = c.getString(TAG_rank);
+                    String ideaID = c.getString(TAG_ideaID);
                     userNameList.add(userName);
                     ideaNameList.add(ideaName);
                     commentList.add(comment);
                     rankList.add(rank);
+                    ideaIDList.add(ideaID);
                 }
 
                 mAdapter = new ArrayAdapter<String>(getActivity(), R.layout.vw_list_item, ideaNameList);
                 mListView.setAdapter(mAdapter);
                 setListClickView();
-
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -230,10 +237,15 @@ public class Fragment_Good extends Fragment implements XListView.IXListViewListe
 
                             }
                         })
-                        .setNeutralButton("Contact Author", new DialogInterface.OnClickListener() {
+                        .setNeutralButton("Disscuss Space", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-
+                                Intent intent = new Intent();
+                                intent.setClass(getActivity(), ChatActivity.class);
+                                intent.putExtra("ideaID", ideaIDList.get(position - 1));
+                                intent.putExtra("ideaName",ideaNameList.get(position-1));
+                                intent.putExtra("userName", userNameList.get(position-1));
+                                startActivity(intent);
                             }
                         })
                         .setNegativeButton("Bad Idea!", new DialogInterface.OnClickListener() {
@@ -244,5 +256,22 @@ public class Fragment_Good extends Fragment implements XListView.IXListViewListe
                 dialog.show();
             }
         });
+    }
+    public void voteForIdea(int goodOrBad, String userName, String ideaName){
+        List<NameValuePair> postData = new ArrayList<NameValuePair>(2);
+        String replyMessage = "";
+        Log.e("here9", "3");
+
+        postData.add(new BasicNameValuePair("vote", goodOrBad + ""));
+        postData.add(new BasicNameValuePair("userName", userName+""));
+        postData.add(new BasicNameValuePair("ideaName", ideaName+""));
+
+        HttpPost hmpr = new HttpPost(MainActivity_Slide.serverUrl+"upload_vote", postData);
+        replyMessage = hmpr.send();//for this time, the reply message is the total distance
+        if(replyMessage.equals("success")){
+            Toast.makeText(getActivity(), "Vote Success", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(getActivity(), "Vote Failed", Toast.LENGTH_SHORT).show();
+        }
     }
 }
